@@ -18,3 +18,7 @@ create table public.study_sessions (
 alter table public.profiles enable row level security;
 alter table public.study_sessions enable row level security;
 
+create policy "Users can manage their own sessions" 
+on public.study_sessions 
+for all 
+using (auth.uid() = user_id);
